@@ -35,5 +35,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnDeschideAdaugare"
         android:layout_marginTop="20dp" />
+    
+    <Button
+        android:id="@+id/btnVeziLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vezi lista de carti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnDeschideAI"
+        android:layout_marginTop="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

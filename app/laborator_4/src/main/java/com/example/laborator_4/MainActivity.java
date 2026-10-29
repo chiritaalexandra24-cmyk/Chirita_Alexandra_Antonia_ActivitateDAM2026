@@ -13,7 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<Carte> listaCarti = new ArrayList<>();
 
     private ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -23,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
                     Carte cartePrimita = (Carte) result.getData().getSerializableExtra("CHEIE_CARTE");
 
                     if (cartePrimita != null) {
-                        Toast.makeText(this, cartePrimita.toString(), Toast.LENGTH_LONG).show();
+                        listaCarti.add(cartePrimita);
+                        Toast.makeText(this, "Carte adăugată în listă!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -45,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
         btnDeschideAI.setOnClickListener(v -> {
             Intent intentAI = new Intent(MainActivity.this, AdaugaCarteAI.class);
             launcher.launch(intentAI);
+        });
+
+        Button btnVeziLista = findViewById(R.id.btnVeziLista);
+        btnVeziLista.setOnClickListener(v -> {
+            Intent intentLista = new Intent(MainActivity.this, ListaCartiActivity.class);
+            intentLista.putExtra("LISTA_CARTI", listaCarti);
+            startActivity(intentLista);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
